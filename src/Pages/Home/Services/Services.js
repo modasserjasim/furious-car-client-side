@@ -5,10 +5,10 @@ import ServiceCard from './ServiceCard';
 
 const Services = () => {
     const [services, setServices] = useState([]);
-    useEffect( () =>{
-        fetch('services.json')
-        .then(res =>res.json())
-        .then(data => setServices(data))
+    useEffect(() => {
+        fetch('http://localhost:4200/services')
+            .then(res => res.json())
+            .then(data => setServices(data))
     }, [])
     return (
         <div>
