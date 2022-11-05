@@ -34,7 +34,8 @@ const Checkout = () => {
         fetch('http://localhost:4200/orders', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('furious-token')}`
             },
             body: JSON.stringify(order)
         })
