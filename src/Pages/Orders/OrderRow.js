@@ -6,7 +6,7 @@ const OrderRow = ({ order, handleItemDelete, handleStatusUpdate }) => {
     //alternatively we did this for image uploading
     /* const [orderService, setOrderService] = useState({});
     useEffect(() => {
-        fetch(`http://localhost:4200/service/${service}`)
+        fetch(`https://furious-car.vercel.app/service/${service}`)
             .then(res => res.json())
             .then(data => setOrderService(data))
     }, [service]) */

@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { setAuthToken } from '../../api/auth';
 import img from '../../assets/images/login/login.svg';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
     const { loginWithEmail } = useContext(AuthContext);
@@ -21,28 +23,8 @@ const Login = () => {
                 const user = result.user;
                 toast.success('You have successfully logged in', { position: "top-center", autoClose: 1000, });
 
-                // get jwt token
-                const currentUser = {
-                    email: user.email
-                }
-                // console.log(currentUser);
-
-                fetch('http://localhost:4200/jwt', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(currentUser)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        // console.log('my data', data);
-                        //local storage is easiest but not the best place to store the token
-                        localStorage.setItem('furious-token', data.token);
-                        navigate(from, { replace: true });
-
-                    })
-
+                // APPLYING jwt token
+                setAuthToken(user);
 
             })
             .catch(error => console.log(error))
@@ -76,6 +58,7 @@ const Login = () => {
                             <input className="btn btn-primary" type="submit" value="Login" />
                         </div>
                     </form>
+                    <SocialLogin></SocialLogin>
                     <p className='text-center'>New to Furious Car <Link className='text-orange-600 font-bold' to="/signup">Sign Up</Link> </p>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { setAuthToken } from '../../api/auth';
 import img from '../../assets/images/login/login.svg';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
@@ -19,7 +20,8 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast.success('Signup complete, please login now!')
+                toast.success('Signup complete, please login now!');
+                setAuthToken(user);
             })
             .catch(err => console.error(err));
     }

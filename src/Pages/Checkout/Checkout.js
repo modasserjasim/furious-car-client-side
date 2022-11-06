@@ -31,7 +31,7 @@ const Checkout = () => {
         // }
 
         // send the data using POST Method
-        fetch('http://localhost:4200/orders', {
+        fetch('https://furious-car.vercel.app/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
